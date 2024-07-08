@@ -6,3 +6,21 @@ Question: What are the top-paying data analyst jobs?
 - Why? Highlight the top-paying opportunities for Data Analysts, offering insights into employment options and location flexibility.
 */
 
+
+SELECT
+    job_id,
+    company_dim.name,
+    job_title,
+    job_schedule_type,
+    salary_year_avg,
+    job_posted_date
+FROM 
+    job_postings_fact,
+    company_dim
+WHERE
+    job_title_short = 'Data Analyst' AND 
+    job_location = 'Anywhere' AND
+    salary_year_avg IS NOT NULL
+ORDER BY salary_year_avg DESC
+LIMIT 10;
+
